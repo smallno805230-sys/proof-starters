@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>緊緻性｜高微證明起手式</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <a href="../index.html">← 回到首頁</a>
+      <h1>緊緻性</h1>
+      <p>例題：證明度量空間中的單點集合是緊緻的。</p>
+    </header>
+
+    <section>
+      <h2>題型辨識</h2>
+      <p>看到「證明某集合是緊緻的」，先任取一個開覆蓋，再從這個開覆蓋中挑出有限多個開集合，使它們仍能覆蓋原集合。這題的集合只有一個點，所以只要挑出一個包含該點的開集合。</p>
+    </section>
+
+    <section>
+      <h2>英文起手式</h2>
+      <p lang="en">Let (X, d) be a metric space and let p ∈ X. Let 𝒰 be an arbitrary open cover of {p}.</p>
+      <p>先用 p 表示單點集合中的唯一元素，再任取一個開覆蓋 𝒰。緊緻性的定義要求每個開覆蓋都有有限子覆蓋，所以一開始就要寫出「an arbitrary open cover」。</p>
+    </section>
+
+    <section>
+      <h2>證明步驟</h2>
+      <ol>
+        <li>依照緊緻性的定義，要證明 {p} 的每個開覆蓋都有有限子覆蓋。任取 {p} 的一個開覆蓋 𝒰。</li>
+        <li>因為 𝒰 覆蓋 {p}，所以 p 屬於 𝒰 中所有開集合的聯集。因此，存在某個 U ∈ 𝒰，使得 p ∈ U。</li>
+        <li>由於 {p} ⊆ U，只含一個開集合的子族 {U} 就能覆蓋 {p}，所以 {U} 是 𝒰 的有限子覆蓋。</li>
+        <li>因為 𝒰 是任取的，所以 {p} 的每個開覆蓋都有有限子覆蓋。因此 {p} 是緊緻的。</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>常見錯誤</h2>
+      <p>直接選開球 B(p, 1)，因為它包含 p，就把它當作有限子覆蓋。但 B(p, 1) 未必屬於題目中任取的開覆蓋 𝒰。應利用 𝒰 覆蓋 {p} 這個條件，從 𝒰 裡選出一個包含 p 的成員 U。</p>
+    </section>
+  </main>
+</body>
+</html>

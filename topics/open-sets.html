@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>開集合｜高微證明起手式</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <a href="../index.html">← 回到首頁</a>
+      <h1>開集合</h1>
+      <p>例題：證明 (0, 1) 在實數 ℝ 中是開集合。</p>
+    </header>
+
+    <section>
+      <h2>題型辨識</h2>
+      <p>看到「證明某集合是開集合」，先在集合內任取一點 x，再找一個以 x 為中心、完全落在集合內的開區間。</p>
+    </section>
+
+    <section>
+      <h2>英文起手式</h2>
+      <p lang="en">Let x be an arbitrary point in (0, 1). We will find r &gt; 0 such that (x − r, x + r) is contained in (0, 1).</p>
+      <p>先說 x 是任取的，因為開集合的定義要求集合裡的每個點都能找到這樣的半徑。</p>
+    </section>
+
+    <section>
+      <h2>證明步驟</h2>
+      <ol>
+        <li>x 到左端點 0 的距離是 x，到右端點 1 的距離是 1 − x。</li>
+        <li>令 r = min{x, 1 − x}。因為 0 &lt; x &lt; 1，所以 r &gt; 0。</li>
+        <li>由 r ≤ x 和 r ≤ 1 − x，得到 x − r ≥ 0 且 x + r ≤ 1。因此 (x − r, x + r) ⊆ (0, 1)。</li>
+        <li>因為 x 是任取的，所以 (0, 1) 是開集合。</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>常見錯誤</h2>
+      <p>直接令每個點的半徑都是 0.1。若 x = 0.01，這個開區間就會包含負數。半徑應依 x 的位置決定，取兩側距離的較小值就可以。</p>
+    </section>
+  </main>
+</body>
+</html>

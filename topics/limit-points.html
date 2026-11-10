@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>極限點｜高微證明起手式</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <a href="../index.html">← 回到首頁</a>
+      <h1>極限點</h1>
+      <p>例題：令 A = {1/n | n 為正整數}，證明 0 是 A 的極限點。</p>
+    </header>
+
+    <section>
+      <h2>題型辨識</h2>
+      <p>看到「證明 0 是極限點」，先任取半徑 ε &gt; 0，再找一個距離 0 小於 ε、而且不同於 0 的 A 中元素。</p>
+    </section>
+
+    <section>
+      <h2>英文起手式</h2>
+      <p lang="en">Let ε &gt; 0 be arbitrary. We will find a point x in A such that 0 &lt; |x| &lt; ε.</p>
+      <p>先任取 ε，因為每個半徑都要成立。條件 0 &lt; |x| 確保找到的點和 0 不同。</p>
+    </section>
+
+    <section>
+      <h2>證明步驟</h2>
+      <ol>
+        <li>由阿基米德性質，選一個正整數 n，使 n &gt; 1/ε。</li>
+        <li>令 x = 1/n，則 x ∈ A，而且 0 &lt; |x| = 1/n &lt; ε。</li>
+        <li>因此，對每個 ε &gt; 0，區間 (−ε, ε) 都含有一個不同於 0 的 A 中元素，所以 0 是 A 的極限點。</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>常見錯誤</h2>
+      <p>只選 n = 10。這時 x = 0.1，若 ε = 0.01，x 就落在區間外。先任取 ε，再依 ε 選出滿足 n &gt; 1/ε 的正整數。</p>
+    </section>
+  </main>
+</body>
+</html>

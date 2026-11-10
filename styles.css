@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  background: #f1f5f9;
+  color: #1e293b;
+  font-family: system-ui, "Microsoft JhengHei", sans-serif;
+  line-height: 1.7;
+}
+
+main {
+  max-width: 720px;
+  margin: 32px auto;
+  padding: 0 20px;
+}
+
+header,
+section {
+  margin-bottom: 20px;
+  padding: 24px;
+  background: white;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+  color: #16365c;
+}
+
+a {
+  color: #1d4ed8;
+  font-weight: 600;
+}
