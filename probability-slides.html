@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>看到題目，怎麼選機率分配？</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #edf4f2;
+      color: #172d29;
+      font: 1.1rem/1.7 system-ui, sans-serif;
+    }
+
+    main {
+      width: min(56rem, calc(100% - 2rem));
+      margin: clamp(1rem, 5vw, 4rem) auto;
+    }
+
+    section {
+      padding: clamp(1.25rem, 5vw, 3rem);
+      background: white;
+      border: 1px solid #c9ddd6;
+      border-radius: 1.25rem;
+    }
+
+    h1, h2 { margin-top: 0; line-height: 1.25; }
+    h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
+    h2 { font-size: clamp(1.65rem, 5vw, 2.55rem); }
+    a { color: #075d4c; }
+
+    .example, details {
+      background: #eef7f3;
+      padding: .8rem 1rem;
+      border-radius: .65rem;
+      margin: .75rem 0;
+    }
+
+    summary { cursor: pointer; font-weight: 600; }
+    details p { margin-bottom: 0; }
+    .source { margin: 1.5rem 0 0; font-size: .95rem; }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      border: 0;
+      border-radius: .6rem;
+      padding: .6rem .9rem;
+      background: #075d4c;
+      color: white;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:disabled { opacity: .45; cursor: default; }
+    :focus-visible { outline: 3px solid #9a4b00; outline-offset: 4px; }
+
+    table { border-collapse: collapse; width: 100%; }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: .6rem;
+      border-bottom: 1px solid #c9ddd6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section aria-labelledby="slide-1">
+      <h1 id="slide-1" tabindex="-1">看到題目，怎麼選機率分配？</h1>
+      <p>學完這份簡報，你就能從題目描述判斷該用哪一種離散機率分配。</p>
+      <p>假設每球獨立，而且命中率固定為 0.6。先猜猜看，下面兩題會用同一個分配嗎？</p>
+      <ol class="example">
+        <li>投 10 球，恰好進 3 球。</li>
+        <li>一直投到第 3 球命中，恰好投了 10 球。</li>
+      </ol>
+      <p class="source">
+        Wiki 來源 <a href="probability-wiki.md">S1 二項分配、S3 負二項分配</a>
+      </p>
+    </section>
+
+    <section hidden aria-labelledby="slide-2">
+      <h2 id="slide-2" tabindex="-1">固定做幾次，數成功幾次</h2>
+      <p>試驗次數固定，每次只有成功或失敗，彼此獨立，且成功率相同。這時成功次數服從<strong>二項分配</strong>。</p>
+      <div class="example">
+        <strong>投 10 球，恰好進 3 球</strong>
+        <p>從 10 球中選出 3 球命中，有 C(10, 3) 種選法。每一種選法的機率都是 0.6³ × 0.4⁷。</p>
+        <p><strong>P(X = 3) = C(10, 3) × 0.6³ × 0.4⁷ ≈ 0.0425</strong></p>
+      </div>
+      <p class="source">Wiki 來源 <a href="probability-wiki.md">S1 二項分配</a></p>
+    </section>
+
+    <section hidden aria-labelledby="slide-3">
+      <h2 id="slide-3" tabindex="-1">做到第幾次成功才停？</h2>
+      <p>每次試驗獨立且成功率相同。做到<strong>第一次成功</strong>才停止，總次數服從<strong>幾何分配</strong>。做到<strong>第 r 次成功</strong>才停止，總次數服從<strong>負二項分配</strong>。</p>
+      <div class="example">
+        <strong>第 10 球才第 3 次命中</strong>
+        <p>第 10 球必須命中，前 9 球恰好命中 2 球，因此有 C(9, 2) 種選法。</p>
+        <p><strong>P(X = 10) = C(9, 2) × 0.6³ × 0.4⁷ ≈ 0.0127</strong></p>
+      </div>
+      <p>如果題目問的是停止前的<strong>失敗次數</strong>，就用總次數減掉成功次數。這題是 10 − 3 = 7 次。</p>
+      <p class="source">Wiki 來源 <a href="probability-wiki.md">S2 幾何分配、S3 負二項分配</a></p>
+    </section>
+
+    <section hidden aria-labelledby="slide-4">
+      <h2 id="slide-4" tabindex="-1">抽了就不放回</h2>
+      <p>從有限的一批物品中隨機<strong>不放回</strong>抽取，數抽中的目標有幾個，可以用<strong>超幾何分配</strong>。</p>
+      <div class="example">
+        <strong>4 顆紅球、6 顆白球，抽 3 顆恰好有 2 顆紅球</strong>
+        <p>第一次抽到紅球的機率是 4/10。若第一顆已經抽到紅球，第二次抽到紅球的機率變成 3/9。</p>
+        <p><strong>P(X = 2) = C(4, 2) × C(6, 1) ÷ C(10, 3) = 0.30</strong></p>
+      </div>
+      <p class="source">Wiki 來源 <a href="probability-wiki.md">S4 超幾何分配</a></p>
+    </section>
+
+    <section hidden aria-labelledby="slide-5">
+      <h2 id="slide-5" tabindex="-1">一段時間內發生幾次？</h2>
+      <p>假設來電符合固定速率的卜瓦松過程，固定時段內的來電次數服從<strong>卜瓦松分配</strong>。參數 λ 是那一整段時間的預期來電次數。</p>
+      <div class="example">
+        <strong>平均每分鐘 2 通，3 分鐘內恰好收到 4 通</strong>
+        <p>先換算成 3 分鐘的預期來電次數，λ = 2 × 3 = 6。</p>
+        <p><strong>P(X = 4) = e<sup>−6</sup> × 6<sup>4</sup> ÷ 4! ≈ 0.1339</strong></p>
+      </div>
+      <p class="source">Wiki 來源 <a href="probability-wiki.md">S5 卜瓦松分配</a></p>
+    </section>
+
+    <section hidden aria-labelledby="slide-6">
+      <h2 id="slide-6" tabindex="-1">五種分配怎麼分？</h2>
+      <p>先寫下 X 在數什麼，再確認試驗次數、停止條件或抽樣方式。</p>
+      <table>
+        <thead>
+          <tr><th scope="col">題目條件</th><th scope="col">分配</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>固定做 n 次獨立試驗，成功率相同，數成功次數</td><td>二項</td></tr>
+          <tr><td>獨立且成功率相同，數到第一次成功的試驗次數</td><td>幾何</td></tr>
+          <tr><td>獨立且成功率相同，數到第 r 次成功的試驗次數</td><td>負二項</td></tr>
+          <tr><td>從有限的一批物品中不放回抽樣，數抽中的目標</td><td>超幾何</td></tr>
+          <tr><td>在卜瓦松過程模型下，數固定區間的事件次數</td><td>卜瓦松</td></tr>
+        </tbody>
+      </table>
+      <p class="source">Wiki 來源 <a href="probability-wiki.md">S1～S5 五種離散分配</a></p>
+    </section>
+
+    <section hidden aria-labelledby="slide-7">
+      <h2 id="slide-7" tabindex="-1">換你判斷</h2>
+      <p>先想一想，再點開題目核對答案。</p>
+      <details>
+        <summary>公平硬幣獨立擲出，直到第一次出現正面。X 是擲的總次數。</summary>
+        <p><strong>幾何分配。</strong>第一次成功就停，而且每次成功率都是 1/2。對應 Wiki S2。</p>
+      </details>
+      <details>
+        <summary>一批 20 個零件中有 3 個瑕疵品。隨機取 5 個且不放回，X 是取到的瑕疵品數。</summary>
+        <p><strong>超幾何分配。</strong>母體有限，且抽取後不放回。對應 Wiki S4。</p>
+      </details>
+      <details>
+        <summary>客服來電符合卜瓦松過程，平均每分鐘 2 通。X 是 5 分鐘內的來電數。</summary>
+        <p><strong>卜瓦松分配。</strong>5 分鐘的預期來電次數為 λ = 2 × 5 = 10。對應 Wiki S5。</p>
+      </details>
+      <p class="source">Wiki 來源 <a href="probability-wiki.md">S2、S4、S5</a></p>
+    </section>
+
+    <nav aria-label="簡報翻頁">
+      <button id="prev" type="button" disabled>上一頁</button>
+      <span id="page" aria-live="polite">第 1 頁，共 7 頁</span>
+      <button id="next" type="button">下一頁</button>
+    </nav>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('main > section'));
+    const previousButton = document.querySelector('#prev');
+    const nextButton = document.querySelector('#next');
+    const pageLabel = document.querySelector('#page');
+    let currentIndex = 0;
+
+    function moveSlide(offset) {
+      const nextIndex = currentIndex + offset;
+      if (nextIndex < 0 || nextIndex >= slides.length) return;
+
+      slides[currentIndex].hidden = true;
+      currentIndex = nextIndex;
+      const currentSlide = slides[currentIndex];
+      currentSlide.hidden = false;
+
+      pageLabel.textContent = `第 ${currentIndex + 1} 頁，共 ${slides.length} 頁`;
+      previousButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === slides.length - 1;
+
+      currentSlide.querySelector('h1, h2').focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    }
+
+    previousButton.addEventListener('click', () => moveSlide(-1));
+    nextButton.addEventListener('click', () => moveSlide(1));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        moveSlide(event.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
+  </script>
+</body>
+</html>
